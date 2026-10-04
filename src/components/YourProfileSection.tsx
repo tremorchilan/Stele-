@@ -134,8 +134,8 @@ export const YourProfileSection: React.FC<YourProfileSectionProps> = ({
               <h3 className="text-[17px] font-bold text-[var(--stele-text-primary)] leading-tight">
                 {profile.name}
               </h3>
-              <span className="text-[11px] font-mono px-2 py-0.5 rounded-[6px] bg-[var(--stele-accent-soft)] text-[var(--stele-accent)] font-semibold uppercase">
-                {currentRole.replace('_', ' ')}
+              <span className="text-[11px] font-mono text-[var(--stele-accent)] font-semibold uppercase">
+                · {currentRole.replace('_', ' ')}
               </span>
             </div>
             <p className="text-[12px] text-[var(--stele-text-secondary)] mt-0.5 flex items-center gap-1.5 flex-wrap">
@@ -196,8 +196,8 @@ export const YourProfileSection: React.FC<YourProfileSectionProps> = ({
                 <span>+25 pts</span>
               </button>
             ) : (
-              <span className="px-2 py-0.5 rounded-[8px] bg-[var(--reward-done)]/15 text-[var(--reward-done)] text-[11px] font-semibold flex items-center gap-1">
-                <CheckCircle2 className="w-3 h-3" />
+              <span className="text-[11px] font-semibold text-[var(--reward-done)] flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>Claimed</span>
               </span>
             )}
@@ -237,7 +237,7 @@ export const YourProfileSection: React.FC<YourProfileSectionProps> = ({
               <span className="text-[11px] uppercase tracking-wider font-semibold text-[var(--stele-text-muted)] block">
                 Semester Rolling Horizon
               </span>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[var(--stele-accent-soft)] text-[var(--stele-accent)] font-semibold">
+              <span className="text-[10.5px] font-mono text-[var(--stele-accent)] font-semibold">
                 PRD §18 Mirror
               </span>
             </div>
@@ -402,8 +402,8 @@ export const YourProfileSection: React.FC<YourProfileSectionProps> = ({
                   <span className="text-[13px] font-extrabold text-[var(--stele-text-primary)]">
                     In-Campus Physical Perks Bazaar
                   </span>
-                  <span className="px-1.5 py-0.2 rounded-[6px] bg-[var(--stele-surface-elevated)] text-[var(--stele-text-secondary)] border border-[var(--stele-rule)] text-[9.5px] font-semibold uppercase">
-                    Physical Utility
+                  <span className="text-[10.5px] font-mono font-semibold uppercase text-[var(--stele-text-secondary)]">
+                    · Physical Utility
                   </span>
                 </div>
                 <p className="text-[11.5px] text-[var(--stele-text-secondary)] mt-0.5">

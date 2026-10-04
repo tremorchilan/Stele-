@@ -203,8 +203,8 @@ export const UnconventionalFeaturesWidget: React.FC<UnconventionalFeaturesWidget
                 <h2 className="text-[17px] sm:text-[18px] font-bold text-[var(--text-primary)] leading-tight">
                   Unconventional Features
                 </h2>
-                <span className="px-2 py-0.5 rounded-full text-[10.5px] font-semibold tracking-wider uppercase bg-[var(--accent-soft)] text-[var(--accent)]">
-                  White Paper &amp; PRD v2.1
+                <span className="text-[11px] font-mono font-semibold text-[var(--accent)]">
+                  · White Paper &amp; PRD v2.1
                 </span>
               </div>
               <p className="text-[12px] text-[var(--text-secondary)] mt-0.5">
@@ -225,7 +225,7 @@ export const UnconventionalFeaturesWidget: React.FC<UnconventionalFeaturesWidget
           </button>
         </div>
 
-        {/* Category Filter Pills */}
+        {/* Category Filter Tabs */}
         <div className="flex items-center gap-1.5 px-5 py-2.5 border-b border-[var(--rule-default)]/30 overflow-x-auto no-scrollbar shrink-0 bg-black/15">
           {[
             { id: 'all', label: 'All Invariants (10)' },
@@ -243,7 +243,7 @@ export const UnconventionalFeaturesWidget: React.FC<UnconventionalFeaturesWidget
                   : UNCONVENTIONAL_FEATURES.find((f) => f.category === cat.id);
                 if (first) setActiveFeatureId(first.id);
               }}
-              className={`px-3 py-1.5 rounded-full text-[12px] font-medium whitespace-nowrap transition-all ${
+              className={`px-3 py-1.5 rounded-[10px] text-[12px] font-medium whitespace-nowrap transition-all ${
                 selectedCategory === cat.id
                   ? 'bg-[var(--accent)] text-white shadow-xs font-semibold'
                   : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/5'

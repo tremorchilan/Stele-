@@ -330,10 +330,10 @@ const ArchieMascot: React.FC = () => {
         </svg>
       </div>
 
-      {/* Exuberant Speech Bubble / Badge */}
-      <div className="mt-2 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500/20 via-indigo-500/20 to-teal-500/20 border border-amber-400/40 text-amber-300 font-bold text-[11px] tracking-wide uppercase flex items-center gap-1.5 shadow-sm">
-        <Sparkles className="w-3 h-3 text-amber-400 animate-spin" />
-        <span>Optimism &amp; Intellect Unlocked!</span>
+      {/* Exuberant Speech Bubble / Status Line */}
+      <div className="mt-2 px-3 py-1 rounded-[10px] bg-white/[0.06] border border-white/12 text-[var(--amber)] font-bold text-[11px] tracking-wide uppercase flex items-center gap-1.5 shadow-xs">
+        <Sparkles className="w-3 h-3 text-[var(--amber)]" />
+        <span>Optimism &amp; Intellect Unlocked</span>
       </div>
 
       <style>{`
@@ -458,20 +458,18 @@ export const CelebrationOverlay: React.FC<CelebrationOverlayProps> = ({
 
         {/* Big Points Congratulation Header */}
         <div className="mt-3 flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-400 text-black font-black text-[18px] sm:text-[20px] shadow-lg animate-pulse tracking-tight">
-            <Zap className="w-5 h-5 fill-black" />
-            <span>+{celebrationData.points} POINTS AWARDED!</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-[12px] bg-[var(--amber)] text-[#0F172A] font-black text-[18px] sm:text-[20px] shadow-md tracking-tight">
+            <Zap className="w-5 h-5 fill-[#0F172A]" />
+            <span>+{celebrationData.points} POINTS AWARDED</span>
           </div>
 
-          {/* Points Breakdown Pills */}
+          {/* Points Breakdown Inline */}
           {celebrationData.pointsBreakdown && celebrationData.pointsBreakdown.length > 0 && (
-            <div className="flex flex-wrap items-center justify-center gap-1.5 mt-2.5">
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-2.5 text-[11.5px] font-mono text-[var(--stele-text-secondary)]">
               {celebrationData.pointsBreakdown.map((item, idx) => (
-                <span
-                  key={idx}
-                  className="px-2.5 py-0.5 rounded-[8px] bg-black/10 dark:bg-white/10 text-[11px] font-mono font-semibold text-[var(--stele-text-secondary)] border border-white/10"
-                >
-                  {item.label}: <strong className="text-amber-400">+{item.points}</strong>
+                <span key={idx}>
+                  {idx > 0 && <span className="mr-2">·</span>}
+                  {item.label}: <strong className="text-[var(--amber)]">+{item.points}</strong>
                 </span>
               ))}
             </div>
@@ -539,7 +537,7 @@ export const CelebrationOverlay: React.FC<CelebrationOverlayProps> = ({
                 onClose();
                 onOpenRetrospective();
               }}
-              className="w-full sm:w-auto px-4 py-2.5 rounded-[16px] bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-400 dark:text-indigo-300 font-semibold text-[13px] border border-indigo-500/30 flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
+              className="w-full sm:w-auto px-4 py-2.5 rounded-[14px] bg-[var(--accent-soft)] hover:opacity-90 text-[var(--accent)] font-semibold text-[13px] border border-[var(--accent)]/30 flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
               title="Add a 2-minute retrospective for +40 extra knowledge points"
             >
               <BookOpen className="w-4 h-4" />
@@ -555,9 +553,9 @@ export const CelebrationOverlay: React.FC<CelebrationOverlayProps> = ({
                 onClose();
                 onOpenLedger();
               }}
-              className="w-full sm:w-auto px-4 py-2.5 rounded-[16px] bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 text-[var(--stele-text-primary)] font-medium text-[13px] border border-white/15 flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
+              className="w-full sm:w-auto px-4 py-2.5 rounded-[14px] bg-white/[0.06] hover:bg-white/[0.12] text-[var(--stele-text-primary)] font-medium text-[13px] border border-[var(--rule-default)] flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
             >
-              <FileText className="w-4 h-4 text-amber-400" />
+              <FileText className="w-4 h-4 text-[var(--amber)]" />
               <span>Inspect Ledger</span>
             </button>
           )}
@@ -566,7 +564,7 @@ export const CelebrationOverlay: React.FC<CelebrationOverlayProps> = ({
             id="celebration-continue-btn"
             type="button"
             onClick={onClose}
-            className="w-full sm:w-auto px-6 py-2.5 rounded-[16px] bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-[14px] shadow-lg shadow-amber-500/25 active:scale-[0.98] transition-all"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-[14px] bg-[var(--accent)] hover:opacity-90 text-white font-bold text-[14px] shadow-xs active:scale-[0.98] transition-all"
           >
             Celebrate &amp; Continue
           </button>

@@ -2000,7 +2000,8 @@ button:not(.nav-item):not(.toggle-btn):not([role="tab"]):not([role="switch"]):ac
 .device #origin-modal-overlay,
 .device #unconventional-widget-overlay,
 .device #knowledge-capture-overlay,
-.device #celebration-overlay {
+.device #celebration-overlay,
+.device #home-quick-drawer-overlay {
   position: fixed !important;
   inset: 0 !important;
   width: 100% !important;
@@ -2035,7 +2036,8 @@ button:not(.nav-item):not(.toggle-btn):not([role="tab"]):not([role="switch"]):ac
 .device #origin-modal-card,
 .device #unconventional-features-widget,
 .device #knowledge-capture-modal,
-.device #celebration-badge-card {
+.device #celebration-badge-card,
+.device #home-quick-drawer-card {
   width: 100% !important;
   max-width: 100% !important;
   max-height: 100% !important;
@@ -2061,12 +2063,13 @@ button:not(.nav-item):not(.toggle-btn):not([role="tab"]):not([role="switch"]):ac
 .device #settings-sheet-modal h2,
 .device #profile-modal-card h2,
 .device #ledger-modal-card h2,
-.device #origin-modal-card h2 {
-  font-size: 18px !important;
+.device #origin-modal-card h2,
+.device #home-quick-drawer-card h2 {
+  font-size: 17px !important;
   line-height: 1.25 !important;
 }
 
-/* Collapse multi-column desktop grids inside .device modals into clean mobile rows */
+/* Collapse multi-column desktop grids inside .device modals and role consoles into clean mobile rows */
 .device #unconventional-features-widget .grid-cols-2.sm\:grid-cols-3 {
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
 }
@@ -2074,13 +2077,23 @@ button:not(.nav-item):not(.toggle-btn):not([role="tab"]):not([role="switch"]):ac
 .device #unconventional-features-widget .grid-cols-1.sm\:grid-cols-2,
 .device #your-profile-section .grid-cols-1.sm\:grid-cols-2,
 .device #your-profile-section .grid-cols-1.sm\:grid-cols-3,
-.device #item-detail-modal .grid-cols-2.sm\:grid-cols-3 {
+.device #item-detail-modal .grid-cols-2.sm\:grid-cols-3,
+.device #teacher-console-container .grid,
+.device #authority-console-container .grid,
+.device #stewards-console-container .grid,
+.device #core-wiki-studio-console .grid {
   grid-template-columns: minmax(0, 1fr) !important;
 }
 
 .device #settings-sheet-modal .sm\:flex-row,
 .device #your-profile-section .sm\:flex-row,
-.device #ledger-modal-card .sm\:flex-row {
+.device #ledger-modal-card .sm\:flex-row,
+.device #home-quick-drawer-card .sm\:flex-row,
+.device #teacher-console-container .sm\:flex-row,
+.device #authority-console-container .sm\:flex-row,
+.device #stewards-console-container .sm\:flex-row,
+.device #core-wiki-studio-console .sm\:flex-row,
+.device #alumni-archive-console .sm\:flex-row {
   flex-direction: column !important;
   align-items: stretch !important;
 }

@@ -26,7 +26,7 @@ interface RibbonItemData {
   isExclusive?: boolean;
 }
 
-const getRoleRibbonItems = (role: Role, tab: NavTab): RibbonItemData[] => {
+export const getRoleRibbonItems = (role: Role, tab: NavTab): RibbonItemData[] => {
   const exclusive = ROLE_HOME_CONFIG[role]?.exclusiveFeature || ROLE_HOME_CONFIG.aspirant.exclusiveFeature;
 
   const exclusiveRow: RibbonItemData = {
@@ -211,31 +211,11 @@ export const NavBar: React.FC<NavBarProps> = ({
         <div className="clay-ribbon" id="clayRibbon">
           <div className="ribbon-inner">
             <div className="ribbon-glass">
-              {/* Dedicated Page Action Banner */}
-              <div
-                className="flex items-center justify-between px-3 py-2 mb-2 rounded-[14px] bg-[var(--accent-soft)] hover:bg-[var(--accent)]/20 active:scale-[0.98] transition-all cursor-pointer border border-[var(--accent)]/30 text-[var(--text)]"
-                onClick={() => onNavClick(ribbonTab)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onNavClick(ribbonTab)}
-                title={`Open Dedicated ${ribbonTab.charAt(0).toUpperCase() + ribbonTab.slice(1)} Page`}
-              >
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
-                  <span className="text-[12px] font-bold tracking-tight">
-                    Open Dedicated {ribbonTab.charAt(0).toUpperCase() + ribbonTab.slice(1)} Page
-                  </span>
-                </div>
-                <span className="text-[13px] font-extrabold text-[var(--accent)]">&rarr;</span>
-              </div>
-
               {currentItems.map((item) => (
                 <div
                   key={item.title}
                   className={`ribbon-row ${
-                    item.isExclusive
-                      ? 'border border-[var(--accent)]/35 bg-[var(--accent-soft)]/40 rounded-[12px] mb-1'
-                      : ''
+                    item.isExclusive ? 'bg-white/[0.04]' : ''
                   }`}
                   onClick={() => onSelectRibbonItem(item.title)}
                   role="button"
@@ -248,11 +228,13 @@ export const NavBar: React.FC<NavBarProps> = ({
                   >
                     {item.icon}
                   </div>
-                  <div className="flex items-center gap-1.5 flex-1 min-w-0">
-                    <span className="truncate font-semibold">{item.title}</span>
+                  <div className="flex flex-col min-w-0 flex-1">
+                    <span className="truncate font-semibold text-[13.5px] text-[var(--text)] leading-tight">
+                      {item.title}
+                    </span>
                     {item.isExclusive && (
-                      <span className="px-1.5 py-0.5 rounded-[5px] text-[9px] font-extrabold uppercase tracking-wider bg-[var(--accent)] text-white shrink-0">
-                        {currentRole.replace('_', ' ')}
+                      <span className="text-[10.5px] text-[var(--meta)] font-medium leading-tight mt-0.5">
+                        {currentRole.replace('_', ' ')} workspace
                       </span>
                     )}
                   </div>
@@ -282,7 +264,7 @@ export const NavBar: React.FC<NavBarProps> = ({
                   <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
                 </svg>
                 <span>Role Calibration &amp; Settings</span>
-                <span className="ml-auto px-1.5 py-0.5 rounded-[6px] text-[9.5px] font-mono uppercase bg-white/10 text-[var(--text)] font-bold">
+                <span className="ml-auto text-[11px] font-mono text-[var(--meta)] uppercase">
                   {currentRole.replace('_', ' ')}
                 </span>
               </div>
@@ -297,17 +279,17 @@ export const NavBar: React.FC<NavBarProps> = ({
                   tabIndex={0}
                   onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onOpenProfile()}
                   style={{
-                    marginTop: '4px',
-                    borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                    paddingTop: '8px',
+                    marginTop: '2px',
+                    borderTop: '1px solid rgba(255, 255, 255, 0.07)',
+                    paddingTop: '9px',
                   }}
                 >
                   <div className="w-5 h-5 rounded-[7px] bg-[var(--accent)] text-white flex items-center justify-center text-[10px] font-bold shadow-xs shrink-0">
                     {initials}
                   </div>
                   <span className="font-medium truncate">{getProfileRowLabel(currentRole)}</span>
-                  <span className="ml-auto px-1.5 py-0.5 rounded-[6px] text-[10px] font-mono bg-[var(--accent)]/15 text-[var(--accent)] font-bold shrink-0">
-                    {currentRole === 'dweller' ? 'READ-ONLY' : `${profileScore} pts`}
+                  <span className="ml-auto text-[11px] font-mono text-[var(--accent)] font-semibold shrink-0 tabular-nums">
+                    {currentRole === 'dweller' ? 'Observer' : `${profileScore} pts`}
                   </span>
                 </div>
               )}

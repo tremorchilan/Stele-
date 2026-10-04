@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavTab } from './Ribbon';
+import { getRoleRibbonItems } from './NavBar';
 import { Role } from '../types';
-import { ROLE_HOME_CONFIG, ROLE_PROFILES } from '../data/roleProfiles';
+import { ROLE_PROFILES } from '../data/roleProfiles';
 import {
   Sliders,
   Smartphone,
@@ -24,48 +25,6 @@ interface DesktopSidebarProps {
   onSwitchToDeviceFrame?: () => void;
 }
 
-interface RibbonItemData {
-  title: string;
-  icon: string;
-  bg: string;
-  color?: string;
-}
-
-const TAB_RIBBON_ITEMS: Record<NavTab, RibbonItemData[]> = {
-  home: [
-    { title: 'Recent Notices', icon: '◍', bg: '#0284C7', color: '#FFFFFF' },
-    { title: 'Weekly Schedule', icon: '✦', bg: '#F59E0B', color: '#0F172A' },
-    { title: 'Closing Soon', icon: '⬢', bg: '#EF4444', color: '#FFFFFF' },
-  ],
-  radar: [
-    { title: 'Federation Feed', icon: '◍', bg: '#0284C7', color: '#FFFFFF' },
-    { title: 'My Tracked Keywords', icon: '✦', bg: '#F59E0B', color: '#0F172A' },
-    { title: 'Saved Discovery Tasks', icon: '⬣', bg: '#10B981', color: '#FFFFFF' },
-  ],
-  board: [
-    { title: 'Active Commitments', icon: '⬣', bg: '#10B981', color: '#FFFFFF' },
-    { title: 'Watched List', icon: '✦', bg: '#F59E0B', color: '#0F172A' },
-    { title: 'Historical Archive', icon: '◍', bg: '#0284C7', color: '#FFFFFF' },
-  ],
-  campus: [
-    { title: 'Messenger', icon: '💬', bg: '#0284C7', color: '#FFFFFF' },
-    { title: 'Physical Perks Bazaar', icon: '☕', bg: '#F59E0B', color: '#0F172A' },
-    { title: 'Clubs & Societies', icon: '✦', bg: '#8B5CF6', color: '#FFFFFF' },
-    { title: 'Classes & Timetable', icon: '⬣', bg: '#10B981', color: '#FFFFFF' },
-    { title: 'Resources & Syllabi', icon: '⬢', bg: '#EF4444', color: '#FFFFFF' },
-  ],
-  dispatches: [
-    { title: 'Common Channels', icon: '◍', bg: '#0284C7', color: '#FFFFFF' },
-    { title: 'Private DMs', icon: '🔒', bg: '#8B5CF6', color: '#FFFFFF' },
-    { title: 'Friend Index & QR', icon: '👥', bg: '#10B981', color: '#FFFFFF' },
-    { title: 'Catch-up Digest', icon: '⚡', bg: '#F59E0B', color: '#0F172A' },
-  ],
-  bazaar: [
-    { title: 'All Physical Perks', icon: '☕', bg: '#F59E0B', color: '#0F172A' },
-    { title: 'My Claimed Vouchers', icon: '🎟️', bg: '#0284C7', color: '#FFFFFF' },
-  ],
-};
-
 export const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
   activeTab,
   ribbonTab,
@@ -77,16 +36,16 @@ export const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
   profileScore = 185,
   dailyStreak = 3,
   currentRole = 'aspirant',
-  onOpenExclusiveConsole,
   onSwitchToDeviceFrame,
 }) => {
-  const roleConfig = ROLE_HOME_CONFIG[currentRole];
   const roleProfile = ROLE_PROFILES[currentRole];
+  const currentItems = getRoleRibbonItems(currentRole, ribbonTab || activeTab);
   const initials = roleProfile.name
     .split(' ')
+    .filter((p) => !p.includes('.'))
+    .slice(0, 2)
     .map((n) => n[0])
     .join('')
-    .slice(0, 2)
     .toUpperCase();
 
   return (
@@ -188,64 +147,31 @@ export const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
               onClick={() => onNavClick(ribbonTab)}
               aria-label="Close ribbon menu"
             />
-            <div className="absolute left-[84px] top-0 w-[240px] z-50 clay-ribbon-flyout animate-in fade-in zoom-in-95 duration-200">
-              <div className="p-2.5 rounded-[22px] bg-[#1E1E22]/95 backdrop-blur-xl border border-white/10 shadow-[0_14px_34px_rgba(0,0,0,0.65)]">
-              <div className="px-2 py-1 text-[10.5px] font-bold uppercase tracking-wider text-[var(--text-muted)] flex items-center justify-between border-b border-white/8 pb-1.5 mb-1.5">
-                <span>{ribbonTab.toUpperCase()} QUICK ACCESS</span>
-                <span className="text-[9px] font-medium text-white/40">Click for full page</span>
-              </div>
-              <div className="w-full flex flex-col">
-                <button
-                  type="button"
-                  onClick={() => onNavClick(ribbonTab)}
-                  className="w-full px-2.5 py-1.5 mb-1.5 rounded-[10px] bg-[var(--accent-soft)] hover:bg-[var(--accent)]/20 active:scale-[0.98] text-[var(--text)] font-semibold text-[11.5px] flex items-center justify-between border border-[var(--accent)]/30 transition-all cursor-pointer"
-                  title={`Open Dedicated ${ribbonTab.charAt(0).toUpperCase() + ribbonTab.slice(1)} Page`}
-                >
-                  <span>Open Dedicated {ribbonTab.charAt(0).toUpperCase() + ribbonTab.slice(1)} Page</span>
-                  <span className="text-[var(--accent)] font-bold">&rarr;</span>
-                </button>
+            <div className="absolute left-[84px] top-0 w-[248px] z-50 clay-ribbon-flyout animate-in fade-in zoom-in-95 duration-200">
+              <div
+                className="p-2.5 rounded-[22px] border border-white/10 shadow-[0_18px_40px_rgba(0,0,0,0.68),inset_0_1px_0_rgba(255,255,255,0.12)]"
+                style={{
+                  background: 'rgba(26, 26, 32, 0.90)',
+                  backdropFilter: 'blur(26px) saturate(185%)',
+                  WebkitBackdropFilter: 'blur(26px) saturate(185%)',
+                }}
+              >
+                <div className="px-2.5 py-1 text-[11px] font-semibold text-[var(--text-muted)] flex items-center justify-between border-b border-white/8 pb-1.5 mb-1.5">
+                  <span className="capitalize">{ribbonTab} Quick Access</span>
+                  <span className="text-[10.5px] font-mono text-[var(--meta)]">
+                    {currentRole.replace('_', ' ')}
+                  </span>
+                </div>
 
-                {/* Role-Exclusive Direct Link */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (onOpenExclusiveConsole) {
-                      onOpenExclusiveConsole();
-                    } else {
-                      onSelectRibbonItem(`exclusive:${currentRole}`);
-                    }
-                  }}
-                  className="w-full px-2.5 py-2 mb-1.5 rounded-[12px] bg-gradient-to-r from-[#D9A93D]/20 to-[var(--accent)]/15 hover:from-[#D9A93D]/30 hover:to-[var(--accent)]/25 border border-[#D9A93D]/40 text-left flex items-center justify-between transition-all cursor-pointer"
-                >
-                  <div className="flex items-center gap-2 min-w-0">
-                    <div
-                      className="w-6 h-6 rounded-[8px] flex items-center justify-center text-[11px] font-bold shrink-0"
-                      style={{
-                        background: roleConfig.exclusiveFeature.bg,
-                        color: roleConfig.exclusiveFeature.color || '#0F172A',
-                      }}
-                    >
-                      {roleConfig.exclusiveFeature.icon}
-                    </div>
-                    <div className="min-w-0">
-                      <span className="text-[9px] font-mono uppercase tracking-wider text-[#D9A93D] font-bold block leading-none">
-                        Exclusive · {currentRole.replace('_', ' ')}
-                      </span>
-                      <span className="text-[12px] font-extrabold text-[var(--text)] truncate block mt-0.5">
-                        {roleConfig.exclusiveFeature.shortLabel}
-                      </span>
-                    </div>
-                  </div>
-                  <span className="text-[#D9A93D] font-bold text-[13px] shrink-0">&rarr;</span>
-                </button>
-
-                <div className="flex flex-col gap-1">
-                  {TAB_RIBBON_ITEMS[ribbonTab]?.map((item) => (
+                <div className="w-full flex flex-col gap-1">
+                  {currentItems.map((item) => (
                     <button
                       key={item.title}
                       type="button"
                       onClick={() => onSelectRibbonItem(item.title)}
-                      className="w-full px-2.5 py-2 rounded-[12px] hover:bg-white/10 active:bg-white/15 text-left text-[12.5px] font-medium text-[var(--text)] flex items-center gap-2.5 transition-colors cursor-pointer"
+                      className={`w-full px-2.5 py-2 rounded-[13px] hover:bg-white/10 active:bg-white/15 text-left text-[12.5px] font-semibold text-[var(--text)] flex items-center gap-2.5 transition-colors cursor-pointer ${
+                        item.isExclusive ? 'bg-white/[0.04]' : ''
+                      }`}
                     >
                       <div
                         className="w-6 h-6 rounded-[8px] flex items-center justify-center text-[12px] font-bold shadow-xs shrink-0"
@@ -253,24 +179,31 @@ export const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
                       >
                         {item.icon}
                       </div>
-                      <span className="truncate">{item.title}</span>
+                      <div className="min-w-0 flex-1">
+                        <span className="truncate block leading-tight">{item.title}</span>
+                        {item.isExclusive && (
+                          <span className="text-[10px] text-[var(--meta)] font-normal block leading-tight mt-0.5">
+                            {currentRole.replace('_', ' ')} workspace
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-[var(--meta)] text-[14px] shrink-0">&rsaquo;</span>
                     </button>
                   ))}
                 </div>
-              </div>
 
-              <div className="mt-2 pt-1.5 border-t border-white/8">
-                <button
-                  type="button"
-                  onClick={onOpenSettings}
-                  className="w-full px-2.5 py-1.5 rounded-[12px] hover:bg-white/10 text-left text-[12px] font-medium text-[var(--accent)] flex items-center gap-2 transition-colors cursor-pointer"
-                >
-                  <Sliders className="w-3.5 h-3.5" />
-                  <span>Role Calibration &amp; Settings</span>
-                </button>
+                <div className="mt-2 pt-1.5 border-t border-white/8">
+                  <button
+                    type="button"
+                    onClick={onOpenSettings}
+                    className="w-full px-2.5 py-1.5 rounded-[12px] hover:bg-white/10 text-left text-[12px] font-medium text-[var(--meta)] hover:text-[var(--text)] flex items-center gap-2 transition-colors cursor-pointer"
+                  >
+                    <Sliders className="w-3.5 h-3.5" />
+                    <span>Role Calibration &amp; Settings</span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
           </>
         )}
       </div>

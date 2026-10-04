@@ -278,10 +278,10 @@ export const RadarKeywordsView: React.FC<RadarKeywordsViewProps> = ({
                   </div>
 
                   <span
-                    className={`px-2 py-0.5 rounded-[6px] text-[11px] font-mono font-bold ${
+                    className={`text-[11.5px] font-mono font-bold ${
                       count > 0
-                        ? 'bg-emerald-500/15 text-emerald-400'
-                        : 'bg-[var(--canvas)] text-[var(--text-muted)]'
+                        ? 'text-[var(--reward-done)]'
+                        : 'text-[var(--text-muted)]'
                     }`}
                   >
                     {count} {count === 1 ? 'match' : 'matches'}

@@ -246,21 +246,21 @@ export const AcademicYearCalendarView: React.FC<AcademicYearCalendarViewProps> =
         return {
           label: 'Off-Day / Holiday',
           dot: 'bg-white',
-          bg: 'bg-[#10B981] text-white border-[#059669] shadow-xs font-bold',
+          bg: 'bg-[var(--reward-done)] text-white border-[var(--reward-done)] shadow-xs font-bold',
           icon: Coffee,
         };
       case 'exam':
         return {
           label: 'Examination Period',
           dot: 'bg-white',
-          bg: 'bg-[#EF4444] text-white border-[#DC2626] shadow-xs font-bold',
+          bg: 'bg-[var(--urgent)] text-white border-[var(--urgent)] shadow-xs font-bold',
           icon: GraduationCap,
         };
       case 'deadline':
         return {
           label: 'Academic Cutoff',
           dot: 'bg-[#0F172A]',
-          bg: 'bg-[#F59E0B] text-[#0F172A] border-[#D97706] shadow-xs font-bold',
+          bg: 'bg-[var(--amber)] text-[#0F172A] border-[var(--amber)] shadow-xs font-bold',
           icon: Clock,
         };
       case 'recess':
@@ -275,7 +275,7 @@ export const AcademicYearCalendarView: React.FC<AcademicYearCalendarViewProps> =
         return {
           label: 'Term Milestone',
           dot: 'bg-white',
-          bg: 'bg-[#0284C7] text-white border-[#0369A1] shadow-xs font-bold',
+          bg: 'bg-[var(--accent)] text-white border-[var(--accent)] shadow-xs font-bold',
           icon: CalendarCheck,
         };
     }
@@ -295,11 +295,12 @@ export const AcademicYearCalendarView: React.FC<AcademicYearCalendarViewProps> =
             <ArrowLeft className="w-4 h-4" />
           </button>
           <div>
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--accent)] font-mono">
+            <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider font-mono">
+              <span className="text-[var(--accent)]">
                 Federation Registry &amp; Registrar Stream
               </span>
-              <span className="text-[10px] px-2 py-0.5 rounded-[6px] bg-[var(--elevated)] border border-[var(--rule-default)] text-[var(--text-secondary)] font-semibold">
+              <span className="text-[var(--text-muted)]">·</span>
+              <span className="text-[var(--text-secondary)]">
                 Timetable Synced
               </span>
             </div>

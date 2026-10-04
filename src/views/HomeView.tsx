@@ -112,14 +112,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   St<em>e</em>le
                 </div>
                 <div className="live-dot" />
-                <span
-                  className="ml-1.5 px-2 py-0.5 rounded-[7px] text-[10px] font-extrabold uppercase tracking-wider"
-                  style={{
-                    backgroundColor: roleConfig.exclusiveFeature.bg,
-                    color: roleConfig.exclusiveFeature.color,
-                  }}
-                >
-                  {currentRole.replace('_', ' ')}
+                <span className="ml-1.5 text-[11px] font-mono font-bold uppercase tracking-wider text-[var(--accent)]">
+                  · {currentRole.replace('_', ' ')}
                 </span>
               </div>
               <div className="app-sub" id="appSub">
@@ -432,7 +426,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
           </div>
 
-          {/* Exclusive Role Feature Banner (Direct Link to Steward Console, Teacher Console, Authority Console, etc.) */}
+          {/* Exclusive Role Feature Banner (Native .tile Foundation) */}
           <div
             onClick={() => {
               handleTileClick();
@@ -446,12 +440,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 onOpenExclusiveConsole?.();
               }
             }}
-            className="w-full mt-3 p-3.5 sm:p-4 rounded-[18px] sm:rounded-[20px] bg-[var(--tile)] border transition-all flex items-center justify-between gap-3 shadow-xs cursor-pointer group active:scale-[0.98]"
-            style={{ borderColor: `${roleConfig.exclusiveFeature.bg}55` }}
+            className="tile w-full mt-3 !p-3.5 sm:!p-4 flex items-center justify-between gap-3 group"
           >
-            <div className="flex items-center gap-3 min-w-0">
+            <div className="flex items-center gap-3 min-w-0 relative z-1">
               <div
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-[12px] sm:rounded-[14px] flex items-center justify-center font-bold text-[16px] shrink-0 shadow-xs"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-[12px] sm:rounded-[14px] flex items-center justify-center font-bold text-[15px] shrink-0 shadow-xs"
                 style={{
                   backgroundColor: roleConfig.exclusiveFeature.bg,
                   color: roleConfig.exclusiveFeature.color,
@@ -460,18 +453,12 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 {roleConfig.exclusiveFeature.icon}
               </div>
               <div className="min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <h4 className="text-[13.5px] sm:text-[14px] font-extrabold text-[var(--text)]">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <h4 className="text-[13.5px] sm:text-[14px] font-bold text-[var(--text)]">
                     {roleConfig.exclusiveFeature.label}
                   </h4>
-                  <span
-                    className="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider"
-                    style={{
-                      backgroundColor: `${roleConfig.exclusiveFeature.bg}25`,
-                      color: roleConfig.exclusiveFeature.bg,
-                    }}
-                  >
-                    Exclusive to {currentRole.replace('_', ' ')}
+                  <span className="text-[11px] text-[var(--meta)] font-medium">
+                    · {currentRole.replace('_', ' ')} workspace
                   </span>
                 </div>
                 <p className="text-[11.5px] sm:text-[12px] text-[var(--text-secondary)] mt-0.5 truncate">
@@ -480,15 +467,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </div>
             </div>
 
-            <div className="flex items-center gap-1.5 text-[var(--accent)] shrink-0 group-hover:translate-x-0.5 transition-all text-[12px] font-extrabold">
-              <span className="hidden sm:inline">Launch</span>
+            <div className="flex items-center gap-1 text-[var(--accent)] shrink-0 group-hover:translate-x-0.5 transition-all text-[12px] font-semibold relative z-1">
+              <span className="hidden sm:inline">Open</span>
               <ChevronRight className="w-4 h-4" />
             </div>
           </div>
 
-          {/* Role-Oriented Messenger & Digest Full-Width Banner */}
+          {/* Role-Oriented Messenger & Digest Full-Width Banner (Native .tile Foundation) */}
           <div
-            className="w-full mt-2.5 p-3.5 sm:p-4 rounded-[18px] sm:rounded-[20px] bg-[var(--tile)] border border-[rgba(255,255,255,0.08)] hover:border-[rgba(56,189,248,0.35)] transition-all flex items-center justify-between gap-3 shadow-xs cursor-pointer group active:scale-[0.98]"
+            className="tile w-full mt-2.5 !p-3.5 sm:!p-4 flex items-center justify-between gap-3 group"
             id="tileCatchupDigest"
             onClick={() => {
               handleTileClick();
@@ -503,20 +490,20 @@ export const HomeView: React.FC<HomeViewProps> = ({
               }
             }}
           >
-            <div className="flex items-center gap-3 min-w-0">
+            <div className="flex items-center gap-3 min-w-0 relative z-1">
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-[12px] sm:rounded-[14px] bg-[var(--track)] flex items-center justify-center border border-[var(--rule)] text-[var(--text)] shrink-0">
                 <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
               <div className="min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <h4 className="text-[13.5px] sm:text-[14px] font-extrabold text-[var(--text)] transition-colors">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <h4 className="text-[13.5px] sm:text-[14px] font-bold text-[var(--text)] transition-colors">
                     {roleConfig.digestBanner.title}
                   </h4>
-                  <span className="px-2 py-0.5 rounded-full bg-[var(--track)] text-[var(--text)] text-[10.5px] font-bold border border-[var(--rule)]">
-                    {roleConfig.digestBanner.badge}
+                  <span className="text-[11.5px] font-semibold text-[var(--amber)]">
+                    · {roleConfig.digestBanner.badge}
                   </span>
                   <span className="text-[11px] text-[var(--meta)] font-medium hidden sm:inline">
-                    {roleConfig.digestBanner.scopeLabel}
+                    · {roleConfig.digestBanner.scopeLabel}
                   </span>
                 </div>
                 <p className="text-[11.5px] sm:text-[12px] text-[var(--text-secondary)] mt-0.5 truncate">
@@ -525,14 +512,14 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </div>
             </div>
 
-            <div className="flex items-center gap-1.5 text-[var(--text-sub)] group-hover:text-[var(--text)] shrink-0 group-hover:translate-x-0.5 transition-all text-[12px] font-semibold">
+            <div className="flex items-center gap-1 text-[var(--text-sub)] group-hover:text-[var(--text)] shrink-0 group-hover:translate-x-0.5 transition-all text-[12px] font-semibold relative z-1">
               <span className="hidden sm:inline">Review</span>
               <ChevronRight className="w-4 h-4" />
             </div>
           </div>
 
           {/* Role-Specific Active Mandates / Opportunities Preview Tiles */}
-          <div className="mt-6 pt-5 border-t border-[rgba(255,255,255,0.07)]">
+          <div className="mt-6 pt-5 border-t border-[var(--rule)]">
             <div className="flex items-center justify-between mb-3 px-1">
               <div className="flex items-center gap-2">
                 <span className="text-[15px] font-bold text-[var(--text)] tracking-tight">
@@ -544,8 +531,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     ? 'Club Delegation & District Radar Feed'
                     : 'Federated Opportunities'}
                 </span>
-                <span className="px-2 py-0.5 rounded-full bg-[var(--track)] text-[var(--meta)] text-[10.5px] font-bold border border-[var(--rule)]">
-                  {items.length} Active
+                <span className="text-[11.5px] font-mono font-semibold text-[var(--meta)]">
+                  · {items.length} Active
                 </span>
               </div>
               <button
@@ -643,7 +630,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </div>
 
           {/* Explore Radar Feed Shortcut */}
-          <div className="mt-4 pt-3 border-t border-[rgba(255,255,255,0.07)] flex items-center justify-between">
+          <div className="mt-4 pt-3 border-t border-[var(--rule)] flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-[var(--orange)]" />
               <span className="text-[13px] font-semibold text-[var(--text)]">

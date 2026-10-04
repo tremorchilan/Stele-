@@ -230,21 +230,18 @@ export const AuthorityConsole: React.FC<AuthorityConsoleProps> = ({
   return (
     <div
       id="authority-console-container"
-      className="w-full rounded-[20px] bg-[var(--card)] border border-[#EF4444]/40 shadow-lg overflow-hidden my-4"
+      className="w-full rounded-[20px] bg-[var(--card)] border border-[var(--rule-default)]/80 shadow-[0_10px_24px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.07)] overflow-hidden my-4"
     >
       {/* Top Header */}
-      <div className="p-4 sm:p-6 border-b border-[var(--rule-default)]/60 bg-[#EF4444]/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <div className="p-4 sm:p-6 border-b border-[var(--rule-default)]/60 bg-white/[0.02] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-[11px] uppercase tracking-wider font-extrabold text-[#EF4444] flex items-center gap-1.5">
-              <Building2 className="w-4 h-4" />
-              <span>Authority Console · Institutional Governance Board</span>
-            </span>
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#EF4444]/20 text-[#EF4444] border border-[#EF4444]/30">
-              Tier 5 Root Signatory
-            </span>
+          <div className="flex items-center gap-1.5 text-[11.5px] font-semibold text-[#EF4444]">
+            <Building2 className="w-4 h-4" />
+            <span>Authority Console</span>
+            <span className="text-[var(--text-muted)]" aria-hidden="true">·</span>
+            <span className="text-[var(--text-secondary)]">Tier 5 Root Signatory</span>
           </div>
-          <h2 className="text-[19px] sm:text-[21px] font-extrabold text-[var(--text-primary)] mt-1">
+          <h2 className="text-[19px] sm:text-[20px] font-bold text-[var(--text-primary)] mt-1">
             {authorityName} · Sovereign Node Directorate
           </h2>
           <p className="text-[12.5px] sm:text-[13px] text-[var(--text-secondary)]">
@@ -253,7 +250,7 @@ export const AuthorityConsole: React.FC<AuthorityConsoleProps> = ({
         </div>
 
         {/* 5 Governance Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+        <div className="flex items-center gap-1 p-1 rounded-[14px] bg-[var(--canvas)] border border-[var(--rule-default)] overflow-x-auto no-scrollbar">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -262,16 +259,16 @@ export const AuthorityConsole: React.FC<AuthorityConsoleProps> = ({
                 id={`authority-tab-${tab.id}`}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-[12px] text-[12.5px] font-bold transition-all shrink-0 cursor-pointer ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] text-[12.5px] font-semibold transition-all shrink-0 cursor-pointer ${
                   isActive
                     ? 'bg-[#EF4444] text-white shadow-xs'
-                    : 'bg-[var(--track)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                 }`}
               >
                 {tab.icon}
                 <span>{tab.label}</span>
                 {tab.badge !== undefined && tab.badge > 0 && (
-                  <span className="w-4 h-4 rounded-full bg-white/25 text-[10px] flex items-center justify-center font-extrabold">
+                  <span className="w-4 h-4 rounded-full bg-white/25 text-[10px] flex items-center justify-center font-bold tabular-nums">
                     {tab.badge}
                   </span>
                 )}
@@ -392,24 +389,26 @@ export const AuthorityConsole: React.FC<AuthorityConsoleProps> = ({
                 className="p-4 rounded-[14px] bg-[var(--canvas)] border border-[var(--rule-default)] flex flex-col sm:flex-row sm:items-center justify-between gap-3"
               >
                 <div className="min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#EF4444]">
+                  <div className="flex items-center gap-1.5 flex-wrap text-[12px] text-[var(--text-secondary)]">
+                    <span className="font-semibold text-[#EF4444]">
                       {item.clubOrDept}
                     </span>
-                    <span className="text-[10.5px] font-mono px-2 py-0.5 rounded-[6px] bg-[var(--track)] text-[var(--text-secondary)] border border-[var(--rule-default)]">
-                      {item.budgetOrScope}
-                    </span>
+                    <span aria-hidden="true">·</span>
+                    <span className="font-mono text-[11.5px]">{item.budgetOrScope}</span>
                     {item.status === 'ratified' && item.hash && (
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-[6px] bg-[#10B981]/15 text-[#10B981] font-bold">
-                        Seal: {item.hash}
-                      </span>
+                      <>
+                        <span aria-hidden="true">·</span>
+                        <span className="font-mono text-[11px] text-[#10B981] font-semibold">
+                          Seal: {item.hash}
+                        </span>
+                      </>
                     )}
                   </div>
                   <h4 className="text-[14.5px] font-bold text-[var(--text-primary)] mt-1">
                     {item.title}
                   </h4>
                   <p className="text-[12px] text-[var(--text-secondary)] mt-0.5">
-                    Submitted by: {item.submittedBy}
+                    Submitted by {item.submittedBy}
                   </p>
                 </div>
 

@@ -270,22 +270,24 @@ export const BoardView: React.FC<BoardViewProps> = ({
       return (
         <div
           id="core-wiki-studio-console"
-          className="w-full rounded-[20px] bg-[var(--card)] border border-[#10B981]/40 shadow-lg overflow-hidden my-4 p-4 sm:p-6"
+          className="w-full rounded-[20px] bg-[var(--card)] border border-[var(--rule-default)]/80 shadow-[0_10px_24px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.07)] overflow-hidden my-4 p-4 sm:p-6"
         >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-[var(--rule-default)]/60">
             <div>
-              <span className="text-[11px] uppercase tracking-wider font-extrabold text-[#10B981] flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 text-[11.5px] font-semibold text-[#10B981]">
                 <BookOpen className="w-4 h-4" />
-                <span>Loyal Core Exclusive · Club Wiki & Retrospective Studio</span>
-              </span>
-              <h2 className="text-[19px] font-extrabold text-[var(--text-primary)] mt-1">
-                Institutional Memory & Playbook Authorship Desk
+                <span>Loyal Core Studio</span>
+                <span className="text-[var(--text-muted)]" aria-hidden="true">·</span>
+                <span className="text-[var(--text-secondary)]">Club Wiki &amp; Retrospectives</span>
+              </div>
+              <h2 className="text-[19px] font-bold text-[var(--text-primary)] mt-1">
+                Institutional Memory &amp; Playbook Authorship Desk
               </h2>
               <p className="text-[12.5px] text-[var(--text-secondary)]">
                 Core members edit club playbooks and inscribe retrospectives (Delegation requires Steward clearance).
               </p>
             </div>
-            <span className="px-2.5 py-1 rounded-full bg-[#10B981]/15 text-[#10B981] text-[11px] font-extrabold self-start sm:self-center">
+            <span className="text-[12px] font-mono tabular-nums text-[#10B981] font-semibold self-start sm:self-center">
               {wikiPages.length} Active Playbooks
             </span>
           </div>
@@ -345,18 +347,20 @@ export const BoardView: React.FC<BoardViewProps> = ({
       return (
         <div
           id="dweller-observer-console"
-          className="w-full rounded-[20px] bg-[var(--card)] border border-[#64748B]/40 shadow-md overflow-hidden my-4 p-4 sm:p-6"
+          className="w-full rounded-[20px] bg-[var(--card)] border border-[var(--rule-default)]/80 shadow-[0_10px_24px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.07)] overflow-hidden my-4 p-4 sm:p-6"
         >
           <div className="flex items-start gap-3">
-            <div className="p-2.5 rounded-[12px] bg-[#64748B]/20 text-[#94A3B8] shrink-0">
+            <div className="p-2.5 rounded-[12px] bg-white/[0.05] border border-[var(--rule-default)] text-[var(--text-secondary)] shrink-0">
               <Eye className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-[11px] uppercase tracking-wider font-extrabold text-[#94A3B8] block">
-                Dweller Stage · Read-Only Observer Deck
-              </span>
-              <h2 className="text-[18px] font-extrabold text-[var(--text-primary)] mt-0.5">
-                Zero-Pressure Public Charter & Fixture Observation
+              <div className="text-[11.5px] font-semibold text-[var(--text-secondary)]">
+                <span>Dweller Stage</span>
+                <span className="mx-1.5" aria-hidden="true">·</span>
+                <span>Read-Only Observer Deck</span>
+              </div>
+              <h2 className="text-[18px] font-bold text-[var(--text-primary)] mt-0.5">
+                Zero-Pressure Public Charter &amp; Fixture Observation
               </h2>
               <p className="text-[12.5px] text-[var(--text-secondary)] mt-1 leading-relaxed">
                 As a Dweller (Observer Stage), you can freely inspect public club charters, watch campus exhibitions, and browse timetables with zero notification pings or task-claiming pressure.
@@ -371,15 +375,17 @@ export const BoardView: React.FC<BoardViewProps> = ({
       return (
         <div
           id="alumni-archive-console"
-          className="w-full rounded-[20px] bg-[var(--card)] border border-[#8B5CF6]/40 shadow-md overflow-hidden my-4 p-4 sm:p-6"
+          className="w-full rounded-[20px] bg-[var(--card)] border border-[var(--rule-default)]/80 shadow-[0_10px_24px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.07)] overflow-hidden my-4 p-4 sm:p-6"
         >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <span className="text-[11px] uppercase tracking-wider font-extrabold text-[#A78BFA] block">
-                Alumni Sovereign Fellow · Permanent Seat
-              </span>
-              <h2 className="text-[18px] font-extrabold text-[var(--text-primary)] mt-0.5">
-                Cryptographic Ledger Seal & Historical Lineage Archive
+              <div className="text-[11.5px] font-semibold text-[#A78BFA]">
+                <span>Alumni Sovereign Fellow</span>
+                <span className="mx-1.5 text-[var(--text-muted)]" aria-hidden="true">·</span>
+                <span className="text-[var(--text-secondary)]">Permanent Archival Seat</span>
+              </div>
+              <h2 className="text-[18px] font-bold text-[var(--text-primary)] mt-0.5">
+                Cryptographic Ledger Seal &amp; Historical Lineage Archive
               </h2>
               <p className="text-[12.5px] text-[var(--text-secondary)] mt-1">
                 48 witnessed acts from Class of 2024 preserved with SHA-256 verification. Read-only access to 2024–2026 club playbooks.
@@ -388,7 +394,7 @@ export const BoardView: React.FC<BoardViewProps> = ({
             <button
               type="button"
               onClick={() => onOpenLedger?.()}
-              className="px-4 py-2 rounded-[12px] bg-[#8B5CF6] text-white text-[12.5px] font-extrabold shrink-0 cursor-pointer self-start sm:self-center"
+              className="px-4 py-2 rounded-[12px] bg-[var(--accent)] text-white text-[12.5px] font-semibold shrink-0 cursor-pointer self-start sm:self-center shadow-xs"
             >
               Verify SHA-256 Ledger Pack &rarr;
             </button>

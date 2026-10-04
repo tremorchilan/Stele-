@@ -71,24 +71,21 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
   return (
     <div className="flex flex-col gap-6 pb-12">
       {/* Header & Back Navigation */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-[rgba(255,255,255,0.08)]">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-[var(--rule-default)]">
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={onBack}
-            className="p-2 rounded-[12px] bg-[var(--tile)] border border-[rgba(255,255,255,0.08)] text-[var(--meta)] hover:text-[var(--text)] transition-colors cursor-pointer"
+            className="p-2 rounded-[12px] bg-[var(--tile)] border border-[var(--rule-default)] text-[var(--meta)] hover:text-[var(--text)] transition-colors cursor-pointer"
             aria-label="Back to Campus Hub"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
           <div>
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--accent)]">
-                Official Curricula
-              </span>
-              <span className="text-[10px] px-2 py-0.5 rounded-[6px] bg-sky-500/15 text-sky-400 font-bold">
-                Faculty Verified
-              </span>
+            <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider">
+              <span className="text-[var(--accent)]">Official Curricula</span>
+              <span className="text-[var(--meta)]">·</span>
+              <span className="text-[var(--text-secondary)]">Faculty Verified</span>
             </div>
             <h1 className="text-[22px] font-extrabold text-[var(--text)] mt-0.5">
               Resources &amp; Course Syllabi
@@ -98,7 +95,7 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
 
         {/* View Switcher: Catalog vs Updates */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1 p-1 rounded-[14px] bg-[var(--tile)] border border-[rgba(255,255,255,0.08)]">
+          <div className="flex items-center gap-1 p-1 rounded-[14px] bg-[var(--tile)] border border-[var(--rule-default)]">
             <button
               type="button"
               onClick={() => setActiveTab('catalog')}
@@ -122,15 +119,15 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
               <Bell className="w-3.5 h-3.5" />
               <span>Revisions Log</span>
               {unreadCount > 0 && (
-                <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[var(--orange)]" />
               )}
             </button>
           </div>
         </div>
       </div>
 
-      {/* SYLLABUS REVISION NOTIFICATION CONTROL PANEL (User explicit requirement!) */}
-      <div className="p-4 sm:p-5 rounded-[20px] bg-[var(--tile)] border border-[rgba(255,255,255,0.08)] shadow-sm">
+      {/* SYLLABUS REVISION NOTIFICATION CONTROL PANEL */}
+      <div className="tile !p-4 sm:!p-5">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-start gap-3.5">
             <div
@@ -140,7 +137,7 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
                   : 'bg-[var(--track)] text-[var(--meta)]'
               }`}
             >
-              {notifyEnabled ? <BellRing className="w-5 h-5 animate-pulse" /> : <Bell className="w-5 h-5" />}
+              {notifyEnabled ? <BellRing className="w-5 h-5" /> : <Bell className="w-5 h-5" />}
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -148,13 +145,13 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
                   Syllabus Revision Alerts
                 </span>
                 <span
-                  className={`text-[10px] font-bold px-2 py-0.5 rounded-[6px] ${
+                  className={`text-[11px] font-semibold ${
                     notifyEnabled
-                      ? 'bg-emerald-500/15 text-emerald-400'
-                      : 'bg-[var(--track)] text-[var(--meta)]'
+                      ? 'text-[var(--reward-done)]'
+                      : 'text-[var(--meta)]'
                   }`}
                 >
-                  {notifyEnabled ? 'Monitoring Active' : 'Muted'}
+                  · {notifyEnabled ? 'Monitoring Active' : 'Muted'}
                 </span>
               </div>
               <p className="text-[12.5px] text-[var(--meta)] mt-0.5 max-w-xl">
@@ -167,10 +164,10 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
             <button
               type="button"
               onClick={handleSimulateFacultyUpdate}
-              className="px-3 py-1.5 rounded-[10px] bg-[var(--tile)] border border-[rgba(255,255,255,0.1)] text-[12px] text-[var(--text)] hover:border-[var(--accent)] transition-all font-medium flex items-center gap-1 cursor-pointer"
+              className="px-3 py-1.5 rounded-[10px] bg-[var(--track)] border border-[var(--rule-default)] text-[12px] text-[var(--text)] hover:border-[var(--accent)] transition-all font-medium flex items-center gap-1 cursor-pointer"
               title="Simulate a professor updating a syllabus"
             >
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <Sparkles className="w-3.5 h-3.5 text-[var(--amber)]" />
               <span>Simulate Addendum</span>
             </button>
 
@@ -179,7 +176,7 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
               onClick={toggleNotification}
               className={`px-4 py-1.5 rounded-[10px] text-[12.5px] font-bold transition-all shadow-xs cursor-pointer ${
                 notifyEnabled
-                  ? 'bg-emerald-500 text-white hover:bg-emerald-600'
+                  ? 'bg-[var(--reward-done)] text-white hover:opacity-90'
                   : 'bg-[var(--accent)] text-white hover:opacity-90'
               }`}
             >
@@ -204,7 +201,7 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
           {updates.map((upd) => (
             <div
               key={upd.id}
-              className="p-4 rounded-[16px] bg-[var(--tile)] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.14)] transition-all flex items-start justify-between gap-4"
+              className="tile !p-4 flex items-start justify-between gap-4"
             >
               <div className="flex items-start gap-3">
                 <div className="w-9 h-9 rounded-[10px] bg-[var(--accent-soft)] text-[var(--accent)] flex items-center justify-center shrink-0 font-bold font-mono text-[11.5px]">
@@ -212,14 +209,16 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
                 </div>
 
                 <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <span className="text-[11px] font-mono font-bold text-[var(--accent)]">
+                  <div className="flex flex-wrap items-center gap-1.5 mb-1 text-[11.5px] text-[var(--meta)]">
+                    <span className="font-mono font-bold text-[var(--accent)]">
                       {upd.courseCode}
                     </span>
-                    <span className="text-[11px] font-bold px-2 py-0.5 rounded-[6px] bg-[var(--track)] text-[var(--text)] capitalize">
+                    <span>·</span>
+                    <span className="font-semibold text-[var(--text)] capitalize">
                       {upd.changeType} Modified
                     </span>
-                    <span className="text-[11.5px] text-[var(--meta)]">
+                    <span>·</span>
+                    <span>
                       {upd.date} by <strong className="text-[var(--text)]">{upd.author}</strong>
                     </span>
                   </div>
@@ -230,7 +229,7 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
                 </div>
               </div>
 
-              <span className="text-[11px] text-emerald-400 font-semibold shrink-0 flex items-center gap-1">
+              <span className="text-[11px] text-[var(--reward-done)] font-semibold shrink-0 flex items-center gap-1">
                 <CheckCircle2 className="w-3.5 h-3.5" /> Verified
               </span>
             </div>
@@ -252,15 +251,15 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setSelectedSyllabus(syl)}
-                  className={`p-4 rounded-[18px] bg-[var(--tile)] border cursor-pointer transition-all flex flex-col justify-between ${
+                  className={`tile flex flex-col justify-between ${
                     isSelected
-                      ? 'border-[var(--accent)] ring-1 ring-[var(--accent)] shadow-md'
-                      : 'border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.18)]'
+                      ? '!border-[var(--accent)] ring-1 ring-[var(--accent)]'
+                      : ''
                   }`}
                 >
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded-[6px] bg-[var(--accent-soft)] text-[var(--accent)]">
+                      <span className="text-[11px] font-mono font-bold text-[var(--accent)]">
                         {syl.courseCode}
                       </span>
                       <span className="text-[11.5px] text-[var(--meta)]">
@@ -277,7 +276,7 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
                     </p>
                   </div>
 
-                  <div className="pt-3 mt-3 border-t border-[rgba(255,255,255,0.06)] text-[11.5px] text-[var(--meta)] flex items-center justify-between">
+                  <div className="pt-3 mt-3 border-t border-[var(--rule-default)] text-[11.5px] text-[var(--meta)] flex items-center justify-between">
                     <span>{syl.instructor}</span>
                     <span className="text-[var(--accent)] font-semibold flex items-center gap-0.5">
                       View Outline <ChevronRight className="w-3.5 h-3.5" />
@@ -290,8 +289,8 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
 
           {/* Selected Syllabus Detail Surface */}
           {selectedSyllabus && (
-            <div className="p-5 sm:p-6 rounded-[22px] bg-[var(--tile)] border border-[rgba(255,255,255,0.08)] shadow-lg flex flex-col gap-5">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-[rgba(255,255,255,0.08)]">
+            <div className="tile !p-5 sm:!p-6 flex flex-col gap-5">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-[var(--rule-default)]">
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-[12px] font-mono font-bold text-[var(--accent)]">
@@ -339,7 +338,7 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
                   {selectedSyllabus.modules.map((mod) => (
                     <div
                       key={mod.number}
-                      className="p-3.5 rounded-[14px] bg-[var(--track)] border border-[rgba(255,255,255,0.06)]"
+                      className="p-3.5 rounded-[14px] bg-[var(--track)] border border-[var(--rule-default)]"
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-[10.5px] font-mono font-bold text-[var(--accent)]">
@@ -349,12 +348,10 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
                       <h5 className="text-[13.5px] font-bold text-[var(--text)] mt-1">
                         {mod.name}
                       </h5>
-                      <div className="flex flex-wrap gap-1 mt-2">
+                      <div className="flex flex-wrap gap-1.5 mt-2 text-[11px] text-[var(--meta)]">
                         {mod.topics.map((t, i) => (
-                          <span
-                            key={i}
-                            className="text-[11px] px-2 py-0.5 rounded-[6px] bg-[var(--tile)] text-[var(--meta)]"
-                          >
+                          <span key={i}>
+                            {i > 0 && <span className="mr-1.5">·</span>}
                             {t}
                           </span>
                         ))}
@@ -375,7 +372,7 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
                     {selectedSyllabus.prescribedTextbooks.map((tb, i) => (
                       <div
                         key={i}
-                        className="p-3 rounded-[12px] bg-[var(--track)] border border-[rgba(255,255,255,0.06)] flex items-start justify-between gap-2"
+                        className="p-3 rounded-[12px] bg-[var(--track)] border border-[var(--rule-default)] flex items-start justify-between gap-2"
                       >
                         <div>
                           <span className="text-[12.5px] font-semibold text-[var(--text)] block">
@@ -385,7 +382,7 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
                             {tb.author} · {tb.edition}
                           </span>
                         </div>
-                        <span className="text-[10.5px] font-bold px-2 py-0.5 rounded-[6px] bg-emerald-500/15 text-emerald-400 shrink-0">
+                        <span className="text-[11px] font-bold text-[var(--reward-done)] shrink-0">
                           {tb.status}
                         </span>
                       </div>
@@ -400,8 +397,8 @@ export const ResourcesSyllabiView: React.FC<ResourcesSyllabiViewProps> = ({
                   </h4>
                   <div className="grid grid-cols-2 gap-2">
                     {selectedSyllabus.evaluationRubric.map((rubric, i) => (
-                      <div key={i} className="p-2.5 rounded-[12px] bg-[var(--track)]">
-                        <span className="text-[16px] font-extrabold text-emerald-400 font-mono block">
+                      <div key={i} className="p-2.5 rounded-[12px] bg-[var(--track)] border border-[var(--rule-default)]">
+                        <span className="text-[16px] font-extrabold text-[var(--reward-done)] font-mono block">
                           {rubric.weight}%
                         </span>
                         <span className="text-[11px] text-[var(--text)] font-semibold block mt-0.5">
